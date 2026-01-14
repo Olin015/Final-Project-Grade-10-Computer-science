@@ -73,6 +73,11 @@ for c in range(0,4):
     cave=pygame.transform.scale(cave,(200,100))
     caves.append(cave)
 
+#setting up the mountain wall
+mount=pygame.image.load(os.path.join('assets','mountain.png')).convert_alpha()
+mount=pygame.transform.scale(mount,(800,100))
+
+
 #setting  up the snake images
 snake_rects=[]
 snakes=[]
@@ -102,15 +107,20 @@ running=True
 #function to draw the images
 def draw():
 
-    #draw the caves at the top of the screen
-    pygame.draw.rect(screen,('black'),[0,0,800,100])
+    #draw the mountain wall at the top
+    screen.blit(mount,(0,0))
+
     
     #line for where you cannot click the snakes
     pygame.draw.line(screen,('red'),(0,100),(800,100),10)
+
     
     #draw the snake
     for s in range(0,4):
         screen.blit(snakes[s],snake_rects[s])
+
+    #draw the next part of the big wall at the top
+    pygame.draw.rect(screen,((100,100,100)),[0,0,800,10])
 
     #draw the caves
     for c in range(0,4):

@@ -53,6 +53,7 @@ go_times=[]
 gos=[]
 snake_rects=[]
 snakes=[]
+snaketails=[]
 for s in range(0,4):
     snake=pygame.image.load(os.path.join('assets','snake head.png')).convert_alpha()
     snake=pygame.transform.scale(snake,(100,150))
@@ -61,6 +62,8 @@ for s in range(0,4):
         snake_rect.topleft=(50,-50)
     else:
         snake_rect.topleft=(200*s+50,-50)
+
+
 
     #variables to help decide when the snakes go
     go=False
