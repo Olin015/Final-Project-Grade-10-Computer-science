@@ -22,14 +22,20 @@ clock=pygame.time.Clock()
 #set the caption for the window
 pygame.display.set_caption('Whack a Snake')
 
-#how fas the snakes move
+#how fast the snakes move
 snake_speed=5
+
+#keeping track of the score
+global score
+score = 0
+#keeping track of your lives
+lives = 0
 
 #setting up the loop for the beinging text scroll
 text_scroll = True 
 
 #seting up the font for the starting scroll
-stans_font = pygame.font.SysFont('comicsans', 10)
+stans_font = pygame.font.SysFont('comicsans', 30)
 
 stans_text = stans_font.render(f"""press any key to start click on the snakesm head to send them back to the start temperaly they get faster over time
 the lore for the game is as follows
@@ -110,8 +116,14 @@ def draw():
     for c in range(0,4):
         screen.blit(caves[c],(c*200,0))
 
+    #draw the score
+    score_txt = stans_font.render(f"""Score: {score}""",1,'white')
+    screen.blit(score_txt, (650,550))
+
 def snake_movement():
     for s in range(0,4):
+        #make score global so i can update it in this function
+        global score
         #deciding if the snakes go or not
         if gos[s]==False and snake_rects[s].y<= -50:
             go_times[s]=random.randint(0,60)
@@ -127,16 +139,14 @@ def snake_movement():
         #if snakes make it across the whole screen
         if snake_rects[s].y>=500:
             gos[s]=False
+            score-=1
 
         mouse_hit=pygame.mouse.get_pressed()
-        mouse_pos=pygame.mouse.get_pos()
-
-
 
         #clicking on the snakes
-        if mouse_hit[0]:
-            if snake_rects[s].collidepoint(pygame.mouse.get_pos()):
-                gos[s]=False
+        if mouse_hit[0] and snake_rects[s].collidepoint(pygame.mouse.get_pos()) and gos[s]==True:
+            gos[s]=False
+            score += 1
 
 
 while running:
@@ -148,11 +158,13 @@ while running:
 
     screen.fill((0,200,100))
 
-    #draw the images
-    draw()
+
 
     #controlling the snakes
     snake_movement()
+
+    #draw the images
+    draw()
 
 
 
