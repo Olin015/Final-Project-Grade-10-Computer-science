@@ -22,7 +22,7 @@ clock=pygame.time.Clock()
 pygame.display.set_caption('Whack a Snake')
 
 #seting up the font for the starting scroll
-stans_font = pygame.font.sysfont(stans_font, 10)
+stans_font = pygame.font.sysfont('comicsans', 10)
 
 stans_text = stans_font.render(f"""press any key to start click on the snakesm head to send them back to the start temperaly they get faster over time
 the lore for the game is as follows
@@ -32,7 +32,7 @@ they regualery go to bars and rack up a tab in the 1,000$ and destory the bar we
 they also like eating kids if they dont eat one every 3 days they die they will eat them faster then they need to for the love of the game
 side note for the tree people you are playing as they like eating grandmas as feralizer
 the way the apples turn into the kids is that they grow into the tree person useing newtreants from the person that ate them and the bursting out of them like chest bursters
-"""
+""")
 
 
 
@@ -46,6 +46,8 @@ for c in range(0,4):
     caves.append(cave)
 
 #setting  up the snake images
+go_times=[]
+gos=[]
 snake_rects=[]
 snakes=[]
 for s in range(0,4):
@@ -59,8 +61,10 @@ for s in range(0,4):
 
     #variables to help decide when the snakes go
     go=False
+    go_time=False
 
-    
+    go_times.append(go_time)
+    gos.append(go)
     snakes.append(snake)
     snake_rects.append(snake_rect)
 
@@ -84,6 +88,7 @@ def draw():
     for c in range(0,4):
         screen.blit(caves[c],(c*200,0))
 
+#snakes coming in and out of the hole
 def snake_movement():
     print('hi')
 
