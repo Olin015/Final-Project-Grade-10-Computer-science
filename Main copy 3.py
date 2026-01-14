@@ -25,6 +25,9 @@ pygame.display.set_caption('Whack a Snake')
 #how fas the snakes move
 snake_speed=5
 
+#follow the mouse around
+mouse_rect=pygame.Rect(10,10,0,0)
+
 #setting up the loop for the beinging text scroll
 text_scroll = True 
 
@@ -44,8 +47,6 @@ a""",1,'yellow')
 location = (400,300)
 
 #create the text
-
-
 while text_scroll == True:
     screen.blit(stans_text, (location)) #text scroll
 #event handler
@@ -114,13 +115,31 @@ def draw():
 
 def snake_movement():
     for s in range(0,4):
-        if gos[s]==False and snake_rect[s].top<= -50:
-            go_times[s]=random.randint(0,10)
-            if go_times[s]>=9:
+        #deciding if the snakes go or not
+        if gos[s]==False and snake_rects[s].y<= -50:
+            go_times[s]=random.randint(0,60)
+            if go_times[s]>59:
                 gos[s]=True
 
+        #snaks moving foreward and backward
         if gos[s]==True:
             snake_rects[s].y+=snake_speed
+        elif snake_rects[s].y>-50 and gos[s]==False:
+            snake_rects[s].y-=snake_speed
+
+        #if snakes make it across the whole screen
+        if snake_rects[s].y>=500:
+            gos[s]=False
+
+        mouse_pos=pygame.mouse.get_pressed()
+        mouse_rect.center=pygame.mouse.get_pos()
+
+
+        #clicking on the snakes
+        if mouse_pos:
+            if mouse_rect.colliderect(snake_rects[s]):
+                gos[s]=False
+
 
 while running:
 
@@ -133,6 +152,9 @@ while running:
 
     #draw the images
     draw()
+
+    #controlling the snakes
+    snake_movement()
 
 
 
