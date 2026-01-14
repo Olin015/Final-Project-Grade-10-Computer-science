@@ -36,7 +36,10 @@ for s in range(0,4):
     snake=pygame.image.load(os.path.join('assets','snake head.png')).convert_alpha()
     snake=pygame.transform.scale(snake,(100,150))
     snake_rect=snake.get_rect()
-    snake_rect.topleft=(100*(s+1),-50)
+    if s==0:
+        snake_rect.topleft=(50,-50)
+    else:
+        snake_rect.topleft=(200*s+50,-50)
     
     snakes.append(snake)
     snake_rects.append(snake_rect)
