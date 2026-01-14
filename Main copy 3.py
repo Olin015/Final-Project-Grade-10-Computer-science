@@ -25,9 +25,6 @@ pygame.display.set_caption('Whack a Snake')
 #how fas the snakes move
 snake_speed=5
 
-#follow the mouse around
-mouse_rect=pygame.Rect(10,10,0,0)
-
 #setting up the loop for the beinging text scroll
 text_scroll = True 
 
@@ -131,13 +128,14 @@ def snake_movement():
         if snake_rects[s].y>=500:
             gos[s]=False
 
-        mouse_pos=pygame.mouse.get_pressed()
-        mouse_rect.center=pygame.mouse.get_pos()
+        mouse_hit=pygame.mouse.get_pressed()
+        mouse_pos=pygame.mouse.get_pos()
+
 
 
         #clicking on the snakes
-        if mouse_pos:
-            if mouse_rect.colliderect(snake_rects[s]):
+        if mouse_hit[0]:
+            if snake_rects[s].collidepoint(pygame.mouse.get_pos()):
                 gos[s]=False
 
 
