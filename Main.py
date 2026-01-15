@@ -46,7 +46,10 @@ mouse_click=False
 #seting up the font for the starting scroll
 stans_font = pygame.font.SysFont('comicsans', 30)
 
-stans_text = stans_font.render(f"""press any key to start click on the snakesm head to send them back to the start temperaly they get faster over time
+#text to tell people to start the game
+start_txt = stans_font.render('Press any key to start', 1, 'white')
+
+stans_text = stans_font.render(f"""click on the snakesm head to send them back to the start temperaly they get faster over time
 the lore for the game is as follows
 you are a race of treants that have kids by growing apples and a group of snakes are coming to eat them
 the snakes are a race of hydra its just one but there are many of them they are a meance to all of civilized socity
@@ -56,23 +59,28 @@ side note for the tree people you are playing as they like eating grandmas as fe
 the way the apples turn into the kids is that they grow into the tree person useing newtreants from the person that ate them and the bursting out of them like chest bursters
 a""",1,'yellow')
 #location for the text on screen
-location_x = 400
+location_x = 100
 location_y = 300
 
 #create the text
 while text_scroll == True:
+
+    screen.fill(('black'))
+
     screen.blit(stans_text, (location_x,location_y)) #text scroll
+    screen.blit(start_txt, (460,20)) #text to tell people to start the game
+
 #event handler
     for event in pygame.event.get():
         if event.type==pygame.KEYDOWN:
             text_scroll = False
         if event.type == pygame.QUIT:
             text_scroll = False
-    location_y +=5 #moves the text up every loop
-    
-    screen.fill(('black'))
+    location_y -=5 #moves the text up every loop
     
     pygame.display.flip()
+
+    clock.tick(60)
 
 #setting up the cave pictures
 caves=[]
