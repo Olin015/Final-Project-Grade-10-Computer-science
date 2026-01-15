@@ -31,6 +31,8 @@ score = 0
 lives = 3 
 #keeping track of if you have lost yet or not
 play=True
+#variable to keep the game loop on
+running=True
 
 #setting up the loop for the beinging text scroll
 text_scroll = True 
@@ -98,7 +100,13 @@ for s in range(0,4):
     snake_rects.append(snake_rect)
     snaketails.append(snaketail)
 
-running=True
+apples=[]
+for a in range(0,lives):
+    apple=pygame.image.load(os.path.join('assets','apple.png'))
+    apple=pygame.transform.scale(apple,(50,50))
+    apples.append(apple)
+
+
 
 #function to draw the images
 def draw():
@@ -129,6 +137,12 @@ def draw():
     #draw the score
     score_txt = stans_font.render(f"""Score: {score}""",1,'white')
     screen.blit(score_txt, (650,550))
+
+    #drawing how many lives are left
+    lives_txt = stans_font.render('Lives: ',1,'white')
+    screen.blit(lives_txt,(30,550))
+    for a in range(0,lives):
+        screen.blit(apples[a],(130+50*a,550))
 
     #when you lose the game
     if lives<=0:
@@ -169,6 +183,9 @@ def snake_movement():
         if mouse_hit[0] and snake_rects[s].collidepoint(pygame.mouse.get_pos()) and gos[s]==True and play==True and snake_rects[s].y>100:
             gos[s]=False
             score += 1
+
+        if play==False:
+            gos[s]=False
 
 
 while running:
