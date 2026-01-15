@@ -25,8 +25,11 @@ pygame.display.set_caption('Whack a Snake')
 #how fast the snakes move
 snake_speed=5
 
+
 #keeping track of the score
 score = 0
+#keeping track of what the score was
+score_check=0
 #keeping track of your lives
 lives = 3 
 #keeping track of if you have lost yet or not
@@ -50,18 +53,19 @@ side note for the tree people you are playing as they like eating grandmas as fe
 the way the apples turn into the kids is that they grow into the tree person useing newtreants from the person that ate them and the bursting out of them like chest bursters
 a""",1,'yellow')
 #location for the text on screen
-location = (400,300)
+location_x = 400
+location_y = 300
 
 #create the text
 while text_scroll == True:
-    screen.blit(stans_text, (location)) #text scroll
+    screen.blit(stans_text, (location_x,location_y)) #text scroll
 #event handler
     for event in pygame.event.get():
         if event.type==pygame.KEYDOWN:
             text_scroll = False
         if event.type == pygame.QUIT:
             text_scroll = False
-    #location +=5 #moves the text up every loop
+    location_y +=5 #moves the text up every loop
     
     screen.fill(('black'))
     
@@ -156,6 +160,8 @@ def snake_movement():
         global score
         global lives
         global play
+        global snake_speed
+        global score_check
         #deciding if the snakes go or not
         if gos[s]==False and snake_rects[s].y<= -50 and play==True:
             go_times[s]=random.randint(0,60)
@@ -184,8 +190,14 @@ def snake_movement():
             gos[s]=False
             score += 1
 
+        #send snakes back into the holes if you lose the game
         if play==False:
             gos[s]=False
+
+        #speed up snakes
+        if score==score_check+10:
+            score_check=score
+            snake_speed+=1
 
 
 while running:
