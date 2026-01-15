@@ -63,20 +63,25 @@ location_x = 100
 location_y = 300
 
 #create the text
-while text_scroll == True:
+while text_scroll:
 
+    #event handler
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+    
     screen.fill(('black'))
 
     screen.blit(stans_text, (location_x,location_y)) #text scroll
     screen.blit(start_txt, (460,20)) #text to tell people to start the game
 
-#event handler
-    for event in pygame.event.get():
-        if event.type==pygame.KEYDOWN:
-            text_scroll = False
-        if event.type == pygame.QUIT:
-            text_scroll = False
     location_y -=5 #moves the text up every loop
+
+
+    keys=pygame.key.get_pressed()
+
+    if any(keys):
+        text_scroll=False
     
     pygame.display.flip()
 
