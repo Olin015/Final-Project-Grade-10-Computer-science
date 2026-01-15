@@ -28,7 +28,9 @@ snake_speed=5
 #keeping track of the score
 score = 0
 #keeping track of your lives
-lives = 0
+lives = 3 
+#keeping track of if you have lost yet or not
+play=True
 
 #setting up the loop for the beinging text scroll
 text_scroll = True 
@@ -101,6 +103,9 @@ running=True
 #function to draw the images
 def draw():
 
+    global lives
+    global play
+
     #draw the mountain wall at the top
     pygame.draw.rect(screen,((88,62,33)),[0,0,800,100])
 
@@ -125,13 +130,20 @@ def draw():
     score_txt = stans_font.render(f"""Score: {score}""",1,'white')
     screen.blit(score_txt, (650,550))
 
+    #when you lose the game
+    if lives<=0:
+        loss_txt=stans_font.render("You Lose",1,'white')
+        screen.blit(loss_txt,(335,300))
+        play=False
+
 def snake_movement():
     for s in range(0,4):
         #make score global so i can update it in this function
         global score
         global lives
+        global play
         #deciding if the snakes go or not
-        if gos[s]==False and snake_rects[s].y<= -50:
+        if gos[s]==False and snake_rects[s].y<= -50 and play==True:
             go_times[s]=random.randint(0,60)
             if go_times[s]>59:
                 gos[s]=True
@@ -147,13 +159,14 @@ def snake_movement():
         #if snakes make it across the whole screen
         if snake_rects[s].y>=500:
             gos[s]=False
-            score-=1
-            lives-=1
+            if play==True:
+                score-=1
+                lives-=1
 
         mouse_hit=pygame.mouse.get_pressed()
 
         #clicking on the snakes
-        if mouse_hit[0] and snake_rects[s].collidepoint(pygame.mouse.get_pos()) and gos[s]==True:
+        if mouse_hit[0] and snake_rects[s].collidepoint(pygame.mouse.get_pos()) and gos[s]==True and play==True and snake_rects[s].y>100:
             gos[s]=False
             score += 1
 
