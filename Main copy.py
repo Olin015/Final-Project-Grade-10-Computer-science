@@ -25,6 +25,10 @@ pygame.display.set_caption('Whack a Snake')
 #how fast the snakes move
 snake_speed=5
 
+#keep track of the location of the extra life
+life_x=0
+life_y=900
+life_time=True
 
 #keeping track of the score
 score = 0
@@ -78,7 +82,7 @@ for c in range(0,4):
     cave=pygame.transform.scale(cave,(200,100))
     caves.append(cave)
 
-#setting  up the snake images
+#setting  up the snake images and hitboxes and controlls for how they go
 snake_rects=[]
 snakes=[]
 go_times=[]
@@ -104,11 +108,14 @@ for s in range(0,4):
     snaketails.append(snaketail)
 
 apples=[]
-for a in range(0,lives):
+for a in range(0,10):
     apple=pygame.image.load(os.path.join('assets','apple.png'))
     apple=pygame.transform.scale(apple,(50,50))
     apples.append(apple)
 
+extra_life=pygame.image.load(os.path.join('assets', 'apple.png'))
+extra_life=pygame.transform.scale(extra_life,(50,50))
+life_rect=extra_life.get_rect()
 
 
 #function to draw the images
@@ -153,6 +160,9 @@ def draw():
         screen.blit(loss_txt,(335,300))
         play=False
 
+    #drawing the extra life
+    screen.blit(extra_life,(life_rect))
+
 #function to make the snakes move
 def snake_movement():
     for s in range(0,4):
@@ -163,13 +173,21 @@ def snake_movement():
         global snake_speed
         global score_check
         global mouse_click
+        global life_x
+        global life_y
+        global life_time
         #deciding if the snakes go or not
         if gos[s]==False and snake_rects[s].y<= -50 and play==True:
-            go_times[s]=random.randint(0,60)
-            if go_times[s]>59:
+            go_times[s]=random.randint(0,600)
+            if go_times[s]>590:
                 gos[s]=True
+            if go_times[s]>=590 and life_time==True:
+                life_y=0
+                life_x=random.randint(100,700)
+                life_time=False
 
-        #snaks moving foreward and backward
+
+        #snakes moving foreward and backward
         if gos[s]==True:
             snake_rects[s].y+=snake_speed
             snaketails[s].y+=snake_speed
@@ -203,6 +221,13 @@ def snake_movement():
         if score==score_check+10:
             score_check=score
             snake_speed+=1
+
+
+        #clicking on the extra live
+        if mouse_hit[0] and life_rect.collidepoint(pygame.mouse.get_pos()) and life_time==False:
+            lives+=1
+            life_y+=900
+            life_time=True
 
 #create the text
 while text_scroll:
@@ -238,6 +263,12 @@ while running:
             running = False
 
     screen.fill(('black'))
+
+    #moving the extra lives
+    life_y+=snake_speed
+    life_rect.topleft = (life_x,life_y)
+    if life_y>HEIGHT:
+        life_time=True
 
     #controlling the snakes
     snake_movement()
