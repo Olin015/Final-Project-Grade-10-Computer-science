@@ -16,7 +16,7 @@ WIDTH=800
 HEIGHT=600
 screen=pygame.display.set_mode((WIDTH,HEIGHT))
 
-#limiting the framerate
+#make clock so I can limit the framerate later
 clock=pygame.time.Clock()
 
 #set the caption for the window
@@ -238,8 +238,6 @@ while running:
 
     #draw the images
     draw()
-
-
 
     #make display appear
     pygame.display.flip()
