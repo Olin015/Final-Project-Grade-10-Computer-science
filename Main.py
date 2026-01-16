@@ -231,8 +231,6 @@ while running:
 
     screen.fill(('black'))
 
-
-
     #controlling the snakes
     snake_movement()
 
