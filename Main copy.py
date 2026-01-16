@@ -62,31 +62,6 @@ a""",1,'yellow')
 location_x = 100
 location_y = 300
 
-#create the text
-while text_scroll:
-
-    #event handler
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-    
-    screen.fill(('black'))
-
-    screen.blit(stans_text, (location_x,location_y)) #text scroll
-    screen.blit(start_txt, (460,20)) #text to tell people to start the game
-
-    location_y -=5 #moves the text up every loop
-
-
-    keys=pygame.key.get_pressed()
-
-    if any(keys):
-        text_scroll=False
-    
-    pygame.display.flip()
-
-    clock.tick(60)
-
 #setting up the cave pictures
 caves=[]
 for c in range(0,4):
@@ -170,6 +145,7 @@ def draw():
         screen.blit(loss_txt,(335,300))
         play=False
 
+#function to make the snakes move
 def snake_movement():
     for s in range(0,4):
         #make score global so i can update it in this function
@@ -220,7 +196,32 @@ def snake_movement():
             score_check=score
             snake_speed+=1
 
+#create the text
+while text_scroll:
 
+    #event handler
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+    
+    screen.fill(('black'))
+
+    screen.blit(stans_text, (location_x,location_y)) #text scroll
+    screen.blit(start_txt, (460,20)) #text to tell people to start the game
+
+    location_y -=5 #moves the text up every loop
+
+
+    keys=pygame.key.get_pressed()
+
+    if any(keys):
+        text_scroll=False
+    
+    pygame.display.flip()
+
+    clock.tick(60)
+
+#main game loop
 while running:
 
     #event handler
