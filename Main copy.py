@@ -53,26 +53,26 @@ stans_font = pygame.font.SysFont('comicsans', 30)
 #text to tell people to start the game
 start_txt = stans_font.render('Press any key to start', 1, 'white')
 
-stans_text = stans_font.render(f"""
-click on the snakesm head to send them back to the 
-start temperaly they get faster over time
-the lore for the game is as follows
-you are a race of treants that have kids by growing 
-apples and a group of snakes are coming to eat them
-the snakes are a race of hydra its just one but there 
-are many of them they are a meance to all of civilized socity
-they regualery go to bars and rack up a tab in the 1,000$ 
-and destory the bar well drinking they also like eating 
-kids if they dont eat one every 3 days they die they will 
-eat them faster then they need to for the love of the game
-side note for the tree people you are playing as they 
-like eating grandmas as feralizer the way the apples 
-turn into the kids is that they grow into the tree person 
-useing newtreants from the person that ate them and the 
-bursting out of them like chest bursters""",1,'yellow')
+stans_text = stans_font.render(f"click on the snakes head to send them back to the start",1,'yellow')
+stans_text1 = stans_font.render(f"temperaly they get faster over time",1,'yellow')
+stans_text2 = stans_font.render(f"the lore for the game is as follows",1,'yellow')
+stans_text3 = stans_font.render(f"you are a race of treants that have kids by growing",1,'yellow')
+stans_text4 = stans_font.render(f"apples and a group of snakes are coming to eat them",1,'yellow')
+stans_text5 = stans_font.render(f"the snakes are a race of hydra its just one but there",1,'yellow')
+stans_text6 = stans_font.render(f"are many of them they are a meance to all of civil socity",1,'yellow')
+stans_text7 = stans_font.render(f"they regualery go to bars and rack up a tab in the 1,000$",1,'yellow')
+stans_text8 = stans_font.render(f"and destory the bar well drinking they also like eating",1,'yellow')
+stans_text9 = stans_font.render(f"kids, if they dont eat one every 3 days they die they will",1,'yellow')
+stans_text10 = stans_font.render(f"eat them faster then they need to beacuse they are evil",1,'yellow')
+stans_text11 = stans_font.render(f"side note for the tree people you are playing as they",1,'yellow')
+stans_text12 = stans_font.render(f"like eating grandmas as feralizer. the way the apple",1,'yellow')
+stans_text13 = stans_font.render(f"turn into the kids is that they grow into the tree person",1,'yellow')
+stans_text14 = stans_font.render(f"useing newtreants from the person that ate them",1,'yellow')
+stans_text15 = stans_font.render(f"and thenbursting out of them like chest bursters",1,'yellow')
+
 #location for the text on screen
 location_x = 10
-location_y = 300
+location_y = 500
 
 #setting up the cave pictures
 caves=[]
@@ -240,9 +240,24 @@ while text_scroll:
     screen.fill(('black'))
 
     screen.blit(stans_text, (location_x,location_y)) #text scroll
+    screen.blit(stans_text1, (location_x,location_y+30))
+    screen.blit(stans_text2, (location_x,location_y+60))
+    screen.blit(stans_text3, (location_x,location_y+90))
+    screen.blit(stans_text4, (location_x,location_y+120))
+    screen.blit(stans_text5, (location_x,location_y+150))
+    screen.blit(stans_text6, (location_x,location_y+180))
+    screen.blit(stans_text7, (location_x,location_y+210))
+    screen.blit(stans_text8, (location_x,location_y+240))
+    screen.blit(stans_text9, (location_x,location_y+270))
+    screen.blit(stans_text10, (location_x,location_y+300))
+    screen.blit(stans_text11, (location_x,location_y+330))
+    screen.blit(stans_text12, (location_x,location_y+360))
+    screen.blit(stans_text13, (location_x,location_y+390))
+    screen.blit(stans_text14, (location_x,location_y+420))
+    screen.blit(stans_text15, (location_x,location_y+450))
     screen.blit(start_txt, (460,20)) #text to tell people to start the game
 
-    location_y -=5 #moves the text up every loop
+    location_y -=3 #moves the text up every loop
 
 
     keys=pygame.key.get_pressed()
