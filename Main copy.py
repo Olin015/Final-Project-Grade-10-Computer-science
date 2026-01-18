@@ -172,7 +172,8 @@ while full_game:
         lives_txt = stans_font.render('Lives: ',1,'white')
         screen.blit(lives_txt,(30,550))
         for a in range(0,lives):
-            screen.blit(apples[a],(130+50*a,550))
+            if lives>0:
+                screen.blit(apples[a],(130+50*a,550))
 
     #function to make the snakes move
     def snake_movement():
@@ -192,7 +193,7 @@ while full_game:
                 go_times[s]=random.randint(0,600)
                 if go_times[s]>590:
                     gos[s]=True
-                if go_times[s]>=600 and life_time==True and lives<10:
+                if go_times[s]>=600 and life_time==True and lives<10 and lives>0:
                     life_y=0
                     life_x=random.randint(100,700)
                     life_time=False
@@ -235,7 +236,7 @@ while full_game:
 
 
             #clicking on the extra live
-            if mouse_hit[0] and life_rect.collidepoint(pygame.mouse.get_pos()) and life_time==False and lives<10:
+            if mouse_hit[0] and life_rect.collidepoint(pygame.mouse.get_pos()) and life_time==False and lives<10 and lives<0:
                 lives+=1
                 life_y+=900
                 life_time=True
