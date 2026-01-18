@@ -26,6 +26,15 @@ full_game=True
 
 while full_game:
 
+    #seting up the font for the starting scroll
+    stans_font = pygame.font.SysFont('comicsans', 30)
+
+    #loading screen
+    screen.fill(('black'))
+    loading_txt = stans_font.render('Loading...',1,'White')
+    screen.blit(loading_txt,(335,280))
+    pygame.display.flip()
+
     #how fast the snakes move
     snake_speed=5
 
@@ -50,9 +59,6 @@ while full_game:
 
     #make sure people dont just hold the click button down
     mouse_click=False
-
-    #seting up the font for the starting scroll
-    stans_font = pygame.font.SysFont('comicsans', 30)
 
     #text to tell people to start the game
     start_txt = stans_font.render('Press any key to start', 1, 'white')
