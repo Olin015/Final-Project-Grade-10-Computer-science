@@ -250,6 +250,7 @@ while full_game:  #loop to allow the full game to repeat
         
         screen.fill(('black'))
 
+        screen.blit(stans_text, (location_x, location_y))
         screen.blit(stans_text1, (location_x,location_y+30))
         screen.blit(stans_text2, (location_x,location_y+60))
         screen.blit(stans_text3, (location_x,location_y+90))
