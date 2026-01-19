@@ -41,7 +41,14 @@ while full_game:  #loop to allow the full game to repeat
     life_y=900
     life_time=True
 
+    secret = [] #keeping track of the secret code
+
+    code_entered = 0  #keeping track of how many codes are entered
     
+    master = False  #keeping track of if you are the master
+
+    key_pressed = False
+
     score = 0  #keeping track of the score
     
     score_check = 0  #keeping track of what the score was
@@ -54,7 +61,7 @@ while full_game:  #loop to allow the full game to repeat
 
     mouse_click = False  #make sure people dont just hold the click button down
 
-    start_txt = stans_font.render('Press any key to start', 1, 'white')  #text to tell people to start the game
+    start_txt = stans_font.render('Press space to start', 1, 'white')  #text to tell people to start the game
 
     #variable text ask people to quit or play again
     loss_txt=stans_font.render("You Lose",1,'white')
@@ -78,7 +85,6 @@ while full_game:  #loop to allow the full game to repeat
     stans_text13 = stans_font.render(f"turn into the kids is that they grow into the tree person",1,'yellow')
     stans_text14 = stans_font.render(f"useing newtreants from the person that ate them",1,'yellow')
     stans_text15 = stans_font.render(f"and then bursting out of them like chest bursters",1,'yellow')
-    space_txt = stans_font.render(' ', 1, 'white')
     
     
     #location for the text on screen
@@ -185,7 +191,7 @@ while full_game:  #loop to allow the full game to repeat
             global life_y
             global life_time
             #deciding if the snakes go or not
-            if gos[s]==False and snake_rects[s].y<= -50 and play==True:
+            if gos[s]==False and snake_rects[s].y<= -50 and play==True and master==False:
                 go_times[s]=random.randint(0,600)
                 if go_times[s]>590:
                     gos[s]=True
@@ -206,7 +212,7 @@ while full_game:  #loop to allow the full game to repeat
             #if snakes make it across the whole screen
             if snake_rects[s].y>=500:
                 gos[s]=False
-                if play==True:
+                if play==True and master==False:
                     score-=1
                     lives-=1
 
@@ -253,33 +259,19 @@ while full_game:  #loop to allow the full game to repeat
 
         #draw the text scroll to the screen
         screen.blit(stans_text, (location_x, location_y))
-
         screen.blit(stans_text2, (location_x,location_y+90))
-
         screen.blit(stans_text3, (location_x,location_y+180))
-
         screen.blit(stans_text4, (location_x,location_y+270))
-
         screen.blit(stans_text5, (location_x,location_y+360))
-  
-        screen.blit(stans_text6, (location_x,location_y+450))
-        
-        screen.blit(stans_text7, (location_x,location_y+540))
-        
-        screen.blit(stans_text8, (location_x,location_y+630))
-        
-        screen.blit(stans_text9, (location_x,location_y+720))
-        
-        screen.blit(stans_text10, (location_x,location_y+810))
-        
-        screen.blit(stans_text11, (location_x,location_y+900))
-        
+        screen.blit(stans_text6, (location_x,location_y+450))    
+        screen.blit(stans_text7, (location_x,location_y+540))    
+        screen.blit(stans_text8, (location_x,location_y+630))     
+        screen.blit(stans_text9, (location_x,location_y+720))     
+        screen.blit(stans_text10, (location_x,location_y+810))    
+        screen.blit(stans_text11, (location_x,location_y+900))   
         screen.blit(stans_text12, (location_x,location_y+990))
-
         screen.blit(stans_text13, (location_x,location_y+1080))
-
         screen.blit(stans_text14, (location_x,location_y+1170))
-
         screen.blit(stans_text15, (location_x,location_y+1260))
 
         screen.blit(start_txt, (460,20)) #text to tell people to start the game
@@ -288,10 +280,55 @@ while full_game:  #loop to allow the full game to repeat
 
         keys=pygame.key.get_pressed()  #checks if each key is being pressed
 
+        #secret code
+        if keys[pygame.K_UP] and key_pressed == False:
+            secret.append('up')
+            code_entered+=1
+            key_pressed=True
+            print('coded')
+
+        if keys[pygame.K_DOWN] and key_pressed == False:
+            secret.append('down')
+            code_entered+=1
+            key_pressed=True
+            print('coded')
+
+        if keys[pygame.K_LEFT] and key_pressed == False:
+            secret.append('left')
+            code_entered += 1
+            key_pressed=True
+            print('coded')
+
+        if keys[pygame.K_RIGHT] and key_pressed == False:
+            secret.append('right')
+            code_entered+=1
+            key_pressed=True
+            print('coded')
+
+        if keys[pygame.K_b] and key_pressed == False:
+            secret.append('b')
+            code_entered += 1
+            key_pressed=True
+            print('coded')
+
+        if keys[pygame.K_a] and key_pressed == False:
+            secret.append('a')
+            code_entered += 1
+            key_pressed = True
+            print('coded')
+
+        if not keys:
+            key_pressed = False
+
         #if any key is pressed end the text scroll
-        if any(keys):
+        if keys[pygame.K_SPACE]:
             text_scroll=False
-        
+
+        if code_entered==10:
+            if secret[0] == 'up' and secret[1] == 'up' and secret[2] == 'down' and secret[3] == 'down' and secret[4] == 'left' and secret[5] == 'right' and secret[6] == 'left' and secret[7] == 'right' and secret[8] == 'b' and secret[9] == 'a':
+                master = True
+                text_scroll = False
+
         pygame.display.flip()  #update the display
 
         clock.tick(60)  #limit frame rate to 60 fps
@@ -322,7 +359,7 @@ while full_game:  #loop to allow the full game to repeat
         draw()  #draw the images
         
         #when you lose the game
-        if lives<=0:
+        if lives<=0 and master==False:
             play=False
             screen.blit(loss_txt,(335,200))
             screen.blit(end_txt,(255,300))
