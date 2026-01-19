@@ -26,10 +26,11 @@ full_game=True  #variable for loop to allow the entire game to be repeated
 
 #setting up sounds
 
-requiem = pygame.mixer.Sound("assets/requiem.wav")
-clicked = pygame.mixer.Sound("assets/metal pipe.wav")
-you_damaged = pygame.mixer.Sound("assets/sonic rings.wav")
-you_die = pygame.mixer.Sound("assets/yoda death sfx.wav")
+requiem = pygame.mixer.Sound("assets/requiem.wav")  #music
+clicked = pygame.mixer.Sound("assets/metal pipe.wav")  #clicking on snakes
+you_damaged = pygame.mixer.Sound("assets/sonic rings.wav")  #losing a life
+you_die = pygame.mixer.Sound("assets/yoda death sfx.wav")  #losing the game
+life_up = pygame.mixer.Sound("assets/extra life.mp3")  #gaining a life
 audio_playing = False
 died_audio_played = False
 
@@ -246,6 +247,7 @@ while full_game:  #loop to allow the full game to repeat
                 life_y+=900
                 life_time=True
                 mouse_click=True
+                life_up.play()
 
             #resetting the mouse click
             if not mouse_hit[0]:
