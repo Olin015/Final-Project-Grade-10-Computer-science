@@ -91,21 +91,19 @@ while full_game:  #loop to allow the full game to repeat
     location_x = 10
     location_y = 500
 
-    #setting up the cave pictures
     caves = []  #cave array
-    for c in range(0,4):
+    for c in range(0,4):  #setting up the cave pictures
         cave=pygame.image.load(os.path.join('assets','cave.png')).convert_alpha()
         cave=pygame.transform.rotate(cave,(-90))
         cave=pygame.transform.scale(cave,(200,100))
         caves.append(cave)
 
-    #setting  up the snake images and hitboxes and controlls for how they go
     snake_rects = []  #snake hitbox array
     snakes = []  #snake images array
     go_times = []  #array of variable to decide when the snakes go
     gos = []  #array of variables that tell if the snakes are currently going
     snaketails = []  #array of rects to act as the snaketails
-    for s in range(0,4):
+    for s in range(0,4):  #setting  up the snake images and hitboxes and controlls for how they move
         snake=pygame.image.load(os.path.join('assets','snake head.png')).convert_alpha()
         snake=pygame.transform.scale(snake,(100,150))
         snake_rect=snake.get_rect()
@@ -123,10 +121,9 @@ while full_game:  #loop to allow the full game to repeat
         snakes.append(snake)
         snake_rects.append(snake_rect)
         snaketails.append(snaketail)
-
-    #creating the apples to show how many lives you have from the bottom of your screen
+ 
     apples=[]  #array of apples to display extra lives
-    for a in range(0,10):
+    for a in range(0,10):  #creating the apples to show how many lives you have from the bottom of your screen
         apple=pygame.image.load(os.path.join('assets','apple.png'))
         apple=pygame.transform.scale(apple,(50,50))
         apples.append(apple)
@@ -135,10 +132,8 @@ while full_game:  #loop to allow the full game to repeat
     extra_life=pygame.image.load(os.path.join('assets', 'apple.png'))
     extra_life=pygame.transform.scale(extra_life,(50,50))
     life_rect=extra_life.get_rect()
-
-
-    #function to draw the images
-    def draw():
+    
+    def draw():  #function to draw the images
 
         global lives
         global play
@@ -177,8 +172,7 @@ while full_game:  #loop to allow the full game to repeat
             if lives>0:
                 screen.blit(apples[a],(130+50*a,550))
 
-    #function to make the snakes move
-    def snake_movement():
+    def snake_movement():  #function to make the snakes move
         for s in range(0,4):
             #make score global so i can update it in this function
             global score
@@ -245,17 +239,15 @@ while full_game:  #loop to allow the full game to repeat
             if not mouse_hit[0]:
                 mouse_click=False
 
-    #create the text scroll 
-    while text_scroll:
-
-        #event handler
-        for event in pygame.event.get():
+    while text_scroll:  #create the text scroll
+     
+        for event in pygame.event.get():  #event handler
             if event.type == pygame.QUIT:
                 text_scroll = False
                 running = False
                 full_game = False
         
-        screen.fill(('black'))
+        screen.fill(('black'))  #fill the screen with black
 
         #draw the text scroll to the screen
         screen.blit(stans_text, (location_x, location_y))
@@ -314,11 +306,11 @@ while full_game:  #loop to allow the full game to repeat
         elif any(keys) and key_pressed==False:  #if any key is pressed end the text scroll
             text_scroll=False
    
-        if not keys[pygame.K_UP] and not keys[pygame.K_DOWN] and not keys[pygame.K_LEFT] and not keys[pygame.K_RIGHT] and not keys[pygame.K_b] and not keys[pygame.K_a]:  #if the konami code is entered
+        if not keys[pygame.K_UP] and not keys[pygame.K_DOWN] and not keys[pygame.K_LEFT] and not keys[pygame.K_RIGHT] and not keys[pygame.K_b] and not keys[pygame.K_a]:  #allow another key to be pressed
             key_pressed = False
 
-        #if konami code is entered
-        if code_entered==10:
+        
+        if code_entered==10:  #if konami code is entered
             if secret[0] == 'up' and secret[1] == 'up' and secret[2] == 'down' and secret[3] == 'down' and secret[4] == 'left' and secret[5] == 'right' and secret[6] == 'left' and secret[7] == 'right' and secret[8] == 'b' and secret[9] == 'a':
                 master = True
                 text_scroll = False
@@ -327,8 +319,7 @@ while full_game:  #loop to allow the full game to repeat
 
         clock.tick(60)  #limit frame rate to 60 fps
 
-    #main game loop
-    while running:
+    while running:  #main game loop
 
         #event handler
         for event in pygame.event.get():
