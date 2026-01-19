@@ -10,6 +10,7 @@ import os
 #always at the beginning
 pygame.init()
 pygame.font.init()
+pygame.mixer.init(44100,-16,2,512,"none",5)
 
 #setting the screen size
 WIDTH=800
@@ -21,12 +22,16 @@ clock=pygame.time.Clock()  #make clock so I can limit the framerate later
 pygame.display.set_caption('Whack a Snake')  #set the caption for the window
 
 full_game=True  #variable for loop to allow the entire game to be repeated
+
+
 #setting up sounds
-ambiant = pygame.mixer.Sound("assets/requiem.mp3")
-clicked = pygame.mixer.Sound("assets/metal pipe.mp3")
-you_damaged = pygame.mixer.Sound("assets/sonic rings.mp3")
-you_die = pygame.mixer.Sound("assets/lego-yoda-death-sound-effect.mp3")
-ambiant_playing = False #so the ambiants doesnt keep playing
+
+requiem = pygame.mixer.Sound("assets/requiem.wav")
+clicked = pygame.mixer.Sound("assets/metal pipe.wav")
+you_damaged = pygame.mixer.Sound("assets/sonic rings.wav")
+you_die = pygame.mixer.Sound("assets/yoda death sfx.wav")
+audio_playing = False
+died_audio_played = False
 
 text_scroll = True  #setting up the loop for the beinging text scroll. Placed here so text scroll doent play when the game is played again
 
@@ -339,6 +344,9 @@ while full_game:  #loop to allow the full game to repeat
 
         #list of every key that gets pressed
         keys=pygame.key.get_pressed()
+        if audio_playing == False:
+            audio_playing = True
+            requiem.play(9,0,0,)
         
 
         #moving the extra lives
@@ -348,7 +356,6 @@ while full_game:  #loop to allow the full game to repeat
             life_time=True
      
         snake_movement()  #controlling the snakes
-
         draw()  #draw the images
         
         #when you lose the game
@@ -357,7 +364,9 @@ while full_game:  #loop to allow the full game to repeat
             screen.blit(loss_txt,(335,200))
             screen.blit(end_txt,(255,300))
             screen.blit(quit_txt,(280,400))
-            you_die.play
+            if died_audio_played == False:
+                you_die.play(0,0,0)
+                died_audio_played = True
             if keys[pygame.K_p]:
                 running=False
             elif keys[pygame.K_q]:
