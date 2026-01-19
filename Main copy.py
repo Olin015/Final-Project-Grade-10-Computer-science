@@ -10,6 +10,7 @@ import os
 #always at the beginning
 pygame.init()
 pygame.font.init()
+pygame.mixer.init(44100,-16,2,512,"none",5)
 
 #setting the screen size
 WIDTH=800
@@ -22,12 +23,21 @@ pygame.display.set_caption('Whack a Snake')  #set the caption for the window
 
 full_game=True  #variable for loop to allow the entire game to be repeated
 
+
+#setting up sounds
+
+requiem = pygame.mixer.Sound("assets/requiem.wav")
+clicked = pygame.mixer.Sound("assets/metal pipe.wav")
+you_damaged = pygame.mixer.Sound("assets/sonic rings.wav")
+you_die = pygame.mixer.Sound("assets/yoda death sfx.wav")
+audio_playing = False
+died_audio_played = False
+
 text_scroll = True  #setting up the loop for the beinging text scroll. Placed here so text scroll doent play when the game is played again
 
 while full_game:  #loop to allow the full game to repeat
 
     stans_font = pygame.font.SysFont('comicsans', 30)  #seting up the font for the starting scroll
-
     #loading screen
     screen.fill(('black'))
     loading_txt = stans_font.render('Loading...',1,'White')
@@ -209,6 +219,7 @@ while full_game:  #loop to allow the full game to repeat
                 gos[s]=False
                 if play==True and master==False:
                     lives-=1
+                you_damaged.play()
 
             mouse_hit=pygame.mouse.get_pressed()
 
@@ -217,6 +228,7 @@ while full_game:  #loop to allow the full game to repeat
                 gos[s]=False
                 score += 1
                 mouse_click=True
+                clicked.play()
 
             #send snakes back into the holes if you lose the game
             if play==False:
@@ -332,6 +344,10 @@ while full_game:  #loop to allow the full game to repeat
 
         #list of every key that gets pressed
         keys=pygame.key.get_pressed()
+        if audio_playing == False:
+            audio_playing = True
+            requiem.play(9,0,0,)
+        
 
         #moving the extra lives
         life_y+=snake_speed
@@ -340,7 +356,6 @@ while full_game:  #loop to allow the full game to repeat
             life_time=True
      
         snake_movement()  #controlling the snakes
-
         draw()  #draw the images
         
         #when you lose the game
@@ -349,11 +364,15 @@ while full_game:  #loop to allow the full game to repeat
             screen.blit(loss_txt,(335,200))
             screen.blit(end_txt,(255,300))
             screen.blit(quit_txt,(280,400))
+            if died_audio_played == False:
+                you_die.play(0,0,0)
+                died_audio_played = True
             if keys[pygame.K_p]:
                 running=False
             elif keys[pygame.K_q]:
                 running=False
                 full_game=False
+            
 
         #make display appear
         pygame.display.flip()
