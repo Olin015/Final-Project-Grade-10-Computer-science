@@ -305,12 +305,12 @@ while full_game:  #loop to allow the full game to repeat
             code_entered+=1
             key_pressed=True
      
-        elif keys[pygame.K_b] and key_pressed == False:  #if b is entered
+        elif keys[pygame.K_b] and key_pressed == False and code_entered == 8:  #if b is entered
             secret.append('b')
             code_entered += 1
             key_pressed=True
       
-        elif keys[pygame.K_a] and key_pressed == False:  #if a is entered
+        elif keys[pygame.K_a] and key_pressed == False and code_entered == 9:  #if a is entered
             secret.append('a')
             code_entered += 1
             key_pressed = True
