@@ -61,7 +61,7 @@ while full_game:  #loop to allow the full game to repeat
 
     mouse_click = False  #make sure people dont just hold the click button down
 
-    start_txt = stans_font.render('Press space to start', 1, 'white')  #text to tell people to start the game
+    start_txt = stans_font.render('Press any key to start', 1, 'white')  #text to tell people to start the game
 
     #variable text ask people to quit or play again
     loss_txt=stans_font.render("You Lose",1,'white')
@@ -191,14 +191,15 @@ while full_game:  #loop to allow the full game to repeat
             global life_y
             global life_time
             #deciding if the snakes go or not
-            if gos[s]==False and snake_rects[s].y<= -50 and play==True and master==False:
-                go_times[s]=random.randint(0,600)
-                if go_times[s]>590:
-                    gos[s]=True
-                if go_times[s]>=600 and life_time==True and lives<10 and lives>0:
-                    life_y=0
-                    life_x=random.randint(100,700)
-                    life_time=False
+            if gos[s]==False and snake_rects[s].y<= -50:
+                if play or master:
+                    go_times[s]=random.randint(0,600)
+                    if go_times[s]>590:
+                        gos[s]=True
+                    if go_times[s]>=600 and life_time==True and lives<10 and lives>0:
+                        life_y=0
+                        life_x=random.randint(100,700)
+                        life_time=False
 
 
             #snakes moving foreward and backward
@@ -213,7 +214,6 @@ while full_game:  #loop to allow the full game to repeat
             if snake_rects[s].y>=500:
                 gos[s]=False
                 if play==True and master==False:
-                    score-=1
                     lives-=1
 
             mouse_hit=pygame.mouse.get_pressed()
@@ -281,49 +281,52 @@ while full_game:  #loop to allow the full game to repeat
         keys=pygame.key.get_pressed()  #checks if each key is being pressed
 
         #secret code
+
+        #if up is entered
         if keys[pygame.K_UP] and key_pressed == False:
             secret.append('up')
             code_entered+=1
             key_pressed=True
-            print('coded')
 
-        if keys[pygame.K_DOWN] and key_pressed == False:
+        #if down is entered
+        elif keys[pygame.K_DOWN] and key_pressed == False:
             secret.append('down')
             code_entered+=1
             key_pressed=True
-            print('coded')
 
-        if keys[pygame.K_LEFT] and key_pressed == False:
+        #if left is entered
+        elif keys[pygame.K_LEFT] and key_pressed == False:
             secret.append('left')
             code_entered += 1
             key_pressed=True
-            print('coded')
 
-        if keys[pygame.K_RIGHT] and key_pressed == False:
+        #if right is entered
+        elif keys[pygame.K_RIGHT] and key_pressed == False:
             secret.append('right')
             code_entered+=1
             key_pressed=True
-            print('coded')
 
-        if keys[pygame.K_b] and key_pressed == False:
+        #if b is entered
+        elif keys[pygame.K_b] and key_pressed == False:
             secret.append('b')
             code_entered += 1
             key_pressed=True
-            print('coded')
 
-        if keys[pygame.K_a] and key_pressed == False:
+        #if a is entered
+        elif keys[pygame.K_a] and key_pressed == False:
             secret.append('a')
             code_entered += 1
             key_pressed = True
-            print('coded')
-
-        if not keys:
-            key_pressed = False
 
         #if any key is pressed end the text scroll
-        if keys[pygame.K_SPACE]:
+        elif any(keys) and key_pressed==False:
             text_scroll=False
 
+        #if the konami code is entered
+        if not keys[pygame.K_UP] and not keys[pygame.K_DOWN] and not keys[pygame.K_LEFT] and not keys[pygame.K_RIGHT] and not keys[pygame.K_b] and not keys[pygame.K_a]:
+            key_pressed = False
+
+        #if konami code is entered
         if code_entered==10:
             if secret[0] == 'up' and secret[1] == 'up' and secret[2] == 'down' and secret[3] == 'down' and secret[4] == 'left' and secret[5] == 'right' and secret[6] == 'left' and secret[7] == 'right' and secret[8] == 'b' and secret[9] == 'a':
                 master = True
