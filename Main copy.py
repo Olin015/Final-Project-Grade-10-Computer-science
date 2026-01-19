@@ -344,6 +344,8 @@ while full_game:  #loop to allow the full game to repeat
 
         #list of every key that gets pressed
         keys=pygame.key.get_pressed()
+
+        #start the music
         if audio_playing == False:
             audio_playing = True
             requiem.play(9,0,0,)
