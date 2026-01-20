@@ -26,13 +26,15 @@ full_game=True  #variable for loop to allow the entire game to be repeated
 
 #setting up sounds
 
-requiem = pygame.mixer.Sound("assets/requiem.wav")  #music
+requiem = pygame.mixer.Sound("assets/requiem.wav")  #music to play during main game
 clicked = pygame.mixer.Sound("assets/metal pipe.wav")  #clicking on snakes
 you_damaged = pygame.mixer.Sound("assets/sonic rings.wav")  #losing a life
 you_die = pygame.mixer.Sound("assets/yoda death sfx.wav")  #losing the game
 life_up = pygame.mixer.Sound("assets/extra life.mp3")  #gaining a life
+title_song = pygame.mixer.Sound("assets/title song.mp3")  #song to play during title crawl
 audio_playing = False
 died_audio_played = False
+title_playing = False
 
 text_scroll = True  #setting up the loop for the beinging text scroll. Placed here so text scroll doent play when the game is played again
 
@@ -262,6 +264,11 @@ while full_game:  #loop to allow the full game to repeat
                 full_game = False
         
         screen.fill(('black'))  #fill the screen with black
+
+        #play title music
+        if title_playing == False:
+            titl = True
+            title_song.play(9,0,0,)
 
         #draw the text scroll to the screen
         screen.blit(stans_text, (location_x, location_y))
