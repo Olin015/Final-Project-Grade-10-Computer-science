@@ -28,10 +28,13 @@ full_game=True  #variable for loop to allow the entire game to be repeated
 
 requiem = pygame.mixer.Sound("assets/requiem.wav")  #music to play during main game
 clicked = pygame.mixer.Sound("assets/metal pipe.wav")  #clicking on snakes
+clicked.set_volume(0.5)  #quieting down the metal pipes
 you_damaged = pygame.mixer.Sound("assets/sonic rings.wav")  #losing a life
+you_damaged.set_volume(0.5)  #quieting down the rings sound effect
 you_die = pygame.mixer.Sound("assets/yoda death sfx.wav")  #losing the game
 life_up = pygame.mixer.Sound("assets/extra life.mp3")  #gaining a life
 title_song = pygame.mixer.Sound("assets/title song.mp3")  #song to play during title crawl
+title_song.set_volume(0.1)  #set the volume of the title song
 audio_playing = False
 died_audio_played = False
 title_playing = False
@@ -267,7 +270,7 @@ while full_game:  #loop to allow the full game to repeat
 
         #play title music
         if title_playing == False:
-            titl = True
+            title_playing = True
             title_song.play(9,0,0,)
 
         #draw the text scroll to the screen
@@ -326,6 +329,7 @@ while full_game:  #loop to allow the full game to repeat
      
         elif any(keys) and key_pressed==False:  #if any key is pressed end the text scroll
             text_scroll=False
+            title_song.stop()
    
         if not keys[pygame.K_UP] and not keys[pygame.K_DOWN] and not keys[pygame.K_LEFT] and not keys[pygame.K_RIGHT] and not keys[pygame.K_b] and not keys[pygame.K_a]:  #allow another key to be pressed
             key_pressed = False
@@ -335,6 +339,7 @@ while full_game:  #loop to allow the full game to repeat
             if secret[0] == 'up' and secret[1] == 'up' and secret[2] == 'down' and secret[3] == 'down' and secret[4] == 'left' and secret[5] == 'right' and secret[6] == 'left' and secret[7] == 'right' and secret[8] == 'b' and secret[9] == 'a':
                 master = True
                 text_scroll = False
+                title_song.stop()
 
         pygame.display.flip()  #update the display
 
