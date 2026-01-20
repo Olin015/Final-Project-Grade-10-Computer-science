@@ -400,4 +400,4 @@ while full_game:  #loop to allow the full game to repeat
         clock.tick(60)
 
 
-pygame.quit()
+pygame.quit()  #always at end to quit pygame
