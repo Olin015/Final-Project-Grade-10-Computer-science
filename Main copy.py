@@ -93,14 +93,15 @@ while full_game:  #loop to allow the full game to repeat
     stans_text5 = stans_font.render(f"The snakes are a race of hydra its just one but there",1,'yellow')
     stans_text6 = stans_font.render(f"are many of them they are a meance to all of civil socity",1,'yellow')
     stans_text7 = stans_font.render(f"they regualery go to bars and rack up a tab in the 1,000$",1,'yellow')
-    stans_text8 = stans_font.render(f"and destory the bar well drinking they also like eating",1,'yellow')
-    stans_text9 = stans_font.render(f"kids, if they dont eat one every 3 days they die they will",1,'yellow')
-    stans_text10 = stans_font.render(f"eat them faster then they need to beacuse they are evil",1,'yellow')
-    stans_text11 = stans_font.render(f"side note for the tree people you are playing as they",1,'yellow')
-    stans_text12 = stans_font.render(f"like eating grandmas as feralizer. the way the apple",1,'yellow')
+    stans_text8 = stans_font.render(f"and destroy the bar well drinking. They also like eating",1,'yellow')
+    stans_text9 = stans_font.render(f"kids, if they dont eat one every 3 days they die. They will",1,'yellow')
+    stans_text10 = stans_font.render(f"eat them faster then they need to beacuse they are evil.",1,'yellow')
+    stans_text11 = stans_font.render(f"Side note, for the tree people you are playing as they",1,'yellow')
+    stans_text12 = stans_font.render(f"like eating grandmas as feralizer. The way the apple",1,'yellow')
     stans_text13 = stans_font.render(f"turn into the kids is that they grow into the tree person",1,'yellow')
     stans_text14 = stans_font.render(f"useing newtreants from the person that ate them",1,'yellow')
-    stans_text15 = stans_font.render(f"and then bursting out of them like chest bursters",1,'yellow')
+    stans_text15 = stans_font.render(f"and then crawling out of the toilet one day after",1,'yellow')
+    stans_text16 = stans_font.render(f"they have taken a dump.",1,'yellow')
     
     
     #location for the text on screen
@@ -275,24 +276,26 @@ while full_game:  #loop to allow the full game to repeat
 
         #draw the text scroll to the screen
         screen.blit(stans_text, (location_x, location_y))
-        screen.blit(stans_text2, (location_x,location_y+90))
-        screen.blit(stans_text3, (location_x,location_y+180))
-        screen.blit(stans_text4, (location_x,location_y+270))
-        screen.blit(stans_text5, (location_x,location_y+360))
-        screen.blit(stans_text6, (location_x,location_y+450))    
-        screen.blit(stans_text7, (location_x,location_y+540))    
-        screen.blit(stans_text8, (location_x,location_y+630))     
-        screen.blit(stans_text9, (location_x,location_y+720))     
-        screen.blit(stans_text10, (location_x,location_y+810))    
-        screen.blit(stans_text11, (location_x,location_y+900))   
-        screen.blit(stans_text12, (location_x,location_y+990))
-        screen.blit(stans_text13, (location_x,location_y+1080))
-        screen.blit(stans_text14, (location_x,location_y+1170))
-        screen.blit(stans_text15, (location_x,location_y+1260))
+        screen.blit(stans_text1, (location_x,location_y+90))
+        screen.blit(stans_text2, (location_x,location_y+180))
+        screen.blit(stans_text3, (location_x,location_y+270))
+        screen.blit(stans_text4, (location_x,location_y+360))
+        screen.blit(stans_text5, (location_x,location_y+450))    
+        screen.blit(stans_text6, (location_x,location_y+540))    
+        screen.blit(stans_text7, (location_x,location_y+630))     
+        screen.blit(stans_text8, (location_x,location_y+720))     
+        screen.blit(stans_text9, (location_x,location_y+810))    
+        screen.blit(stans_text10, (location_x,location_y+900))   
+        screen.blit(stans_text11, (location_x,location_y+990))
+        screen.blit(stans_text12, (location_x,location_y+1080))
+        screen.blit(stans_text13, (location_x,location_y+1170))
+        screen.blit(stans_text14, (location_x,location_y+1260))
+        screen.blit(stans_text15, (location_x,location_y+1350))
+        screen.blit(stans_text16, (location_x,location_y+1440))
 
         screen.blit(start_txt, (460,20)) #text to tell people to start the game
 
-        location_y -= 1  #moves the text up every loop
+        location_y -= 0.5  #moves the text up every loop
 
         keys=pygame.key.get_pressed()  #checks if each key is being pressed
 
