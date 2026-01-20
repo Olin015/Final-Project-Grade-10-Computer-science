@@ -91,17 +91,18 @@ while full_game:  #loop to allow the full game to repeat
     stans_text3 = stans_font.render(f"You are a race of treants that have kids by growing",1,'yellow')
     stans_text4 = stans_font.render(f"apples and a group of snakes are coming to eat them.",1,'yellow')
     stans_text5 = stans_font.render(f"The snakes are a race of hydra its just one but there",1,'yellow')
-    stans_text6 = stans_font.render(f"are many of them they are a meance to all of civil socity",1,'yellow')
-    stans_text7 = stans_font.render(f"they regualery go to bars and rack up a tab in the 1,000$",1,'yellow')
-    stans_text8 = stans_font.render(f"and destroy the bar well drinking. They also like eating",1,'yellow')
-    stans_text9 = stans_font.render(f"kids, if they dont eat one every 3 days they die. They will",1,'yellow')
-    stans_text10 = stans_font.render(f"eat them faster then they need to beacuse they are evil.",1,'yellow')
-    stans_text11 = stans_font.render(f"Side note, for the tree people you are playing as they",1,'yellow')
-    stans_text12 = stans_font.render(f"like eating grandmas as feralizer. The way the apple",1,'yellow')
-    stans_text13 = stans_font.render(f"turn into the kids is that they grow into the tree person",1,'yellow')
-    stans_text14 = stans_font.render(f"useing newtreants from the person that ate them",1,'yellow')
-    stans_text15 = stans_font.render(f"and then crawling out of the toilet one day after",1,'yellow')
-    stans_text16 = stans_font.render(f"they have taken a dump.",1,'yellow')
+    stans_text6 = stans_font.render(f"are many of them they are a meance to all of civil ",1,'yellow')
+    stans_text7 = stans_font.render(f"socity. They regualery go to bars and rack up a tab  ",1,'yellow')
+    stans_text8 = stans_font.render(f"in the 1,000$ and destroy the bar well drinking. ",1,'yellow')
+    stans_text9 = stans_font.render(f"They also like eating kids, if they dont eat one ",1,'yellow')
+    stans_text10 = stans_font.render(f"every 3 days they die. They will eat them faster  ",1,'yellow')
+    stans_text11 = stans_font.render(f"then they need to beacuse they are evil. Side note, ",1,'yellow')
+    stans_text12 = stans_font.render(f"for the tree people you are playing as, they like  ",1,'yellow')
+    stans_text13 = stans_font.render(f"eating grandmas as feralizer. The way the apple turn ",1,'yellow')
+    stans_text14 = stans_font.render(f"into the kids is that they grow into the tree person  ",1,'yellow')
+    stans_text15 = stans_font.render(f"useing newtreants from the person that ate them and  ",1,'yellow')
+    stans_text16 = stans_font.render(f"then crawling out of the toilet one day after they ",1,'yellow')
+    stans_text17 = stans_font.render(f"have taken a dump.",1,'yellow')
     
     
     #location for the text on screen
@@ -292,6 +293,7 @@ while full_game:  #loop to allow the full game to repeat
         screen.blit(stans_text14, (location_x,location_y+1260))
         screen.blit(stans_text15, (location_x,location_y+1350))
         screen.blit(stans_text16, (location_x,location_y+1440))
+        screen.blit(stans_text17, (location_x,location_y+1530))
 
         screen.blit(start_txt, (460,20)) #text to tell people to start the game
 
