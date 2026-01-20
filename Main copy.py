@@ -146,8 +146,8 @@ while full_game:  #loop to allow the full game to repeat
 
     #creating the extra life apple that will fall down ocasioanlly
     extra_life = pygame.image.load(os.path.join('assets', 'apple.png'))
-    extra_life = pygame.transform.scale(extra_life,(50,50))
-    life_rect = extra_life.get_rect()
+    extra_life = pygame.transform.scale(extra_life,(70,70))
+    life_rect = (extra_life.get_rect())
     
     def draw():  #function to draw the images
 
