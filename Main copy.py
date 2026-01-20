@@ -10,7 +10,7 @@ import os
 #always at the beginning
 pygame.init()
 pygame.font.init()
-pygame.mixer.init(44100,-16,2,512,"none",5)
+pygame.mixer.init(44100, -16, 2, 512, "none", 5)
 
 #setting the screen size
 WIDTH = 800
