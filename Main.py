@@ -87,11 +87,11 @@ while full_game:  #loop to allow the full game to repeat
     #variable text to make the text scroll at the beginning
     stans_text = stans_font.render(f"Click on the snakes head to send them back to the start",1,'yellow')
     stans_text1 = stans_font.render(f"temperarely. Click on apples to gain a life.",1,'yellow')
-    stans_text2 = stans_font.render(f"The lore for the game is as follows:",1,'yellow')
+    stans_text2 = stans_font.render(f"======================================================",1,'yellow')
     stans_text3 = stans_font.render(f"You are a race of treants that have kids by growing",1,'yellow')
     stans_text4 = stans_font.render(f"apples and a group of snakes are coming to eat them.",1,'yellow')
     stans_text5 = stans_font.render(f"The snakes are a race of hydra its just one but there",1,'yellow')
-    stans_text6 = stans_font.render(f"are many of them they are a meance to all of civil ",1,'yellow')
+    stans_text6 = stans_font.render(f"are many of them they are a menace to all of civil ",1,'yellow')
     stans_text7 = stans_font.render(f"socity. They regualery go to bars and rack up a tab  ",1,'yellow')
     stans_text8 = stans_font.render(f"in the 1,000$ and destroy the bar well drinking. ",1,'yellow')
     stans_text9 = stans_font.render(f"They also like eating kids, if they dont eat one ",1,'yellow')
