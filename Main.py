@@ -23,9 +23,7 @@ pygame.display.set_caption('Whack a Snake')  #set the caption for the window
 
 full_game=True  #variable for loop to allow the entire game to be repeated
 
-
 #setting up sounds
-
 requiem = pygame.mixer.Sound("assets/requiem.wav")  #music to play during main game
 clicked = pygame.mixer.Sound("assets/metal pipe.wav")  #clicking on snakes
 clicked.set_volume(0.5)  #quieting down the metal pipes
